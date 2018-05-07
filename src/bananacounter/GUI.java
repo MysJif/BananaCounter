@@ -136,6 +136,11 @@ public class GUI extends javax.swing.JFrame
         bananEat = Integer.parseInt(jBnEat.getText());
         bananEat++;
         jBnEat.setText(Integer.toString(bananEat));
+        if(bananCnt < bananEat)
+        {
+            bananCnt = bananEat;
+            jBnCnt.setText(Integer.toString(bananCnt));
+        }
     }//GEN-LAST:event_jBnEatUpActionPerformed
 
     private void jBnCntUpActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jBnCntUpActionPerformed
