@@ -5,13 +5,14 @@
  */
 package bananacounter;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Jason
  */
 public class GUI extends javax.swing.JFrame
 {
-
     /**
      * Creates new form GUI
      */
@@ -37,6 +38,10 @@ public class GUI extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jBnCnt = new javax.swing.JTextField();
         jBnEat = new javax.swing.JTextField();
+        jTypeTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jType1Area = new javax.swing.JTextArea();
+        jAddButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Banana Counter");
@@ -87,6 +92,24 @@ public class GUI extends javax.swing.JFrame
         jBnEat.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jBnEat.setText("0");
 
+        jTypeTextField.setText(" ");
+
+        jType1Area.setEditable(false);
+        jType1Area.setColumns(20);
+        jType1Area.setLineWrap(true);
+        jType1Area.setRows(5);
+        jType1Area.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(jType1Area);
+
+        jAddButton.setText("Add");
+        jAddButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jAddButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,6 +129,9 @@ public class GUI extends javax.swing.JFrame
                 .addComponent(jBnCntUp, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBnCntDown, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+            .addComponent(jTypeTextField)
+            .addComponent(jAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +144,13 @@ public class GUI extends javax.swing.JFrame
                     .addComponent(jLabel1)
                     .addComponent(jBnCnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBnEat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jAddButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,6 +188,21 @@ public class GUI extends javax.swing.JFrame
         bananCnt--;
         jBnCnt.setText(Integer.toString(bananCnt));
     }//GEN-LAST:event_jBnCntDownActionPerformed
+
+    private void jAddButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jAddButtonActionPerformed
+    {//GEN-HEADEREND:event_jAddButtonActionPerformed
+        String output = "";
+        if(!jTypeTextField.getText().equals("") && !jTypeTextField.getText().equals(" "))
+        {
+            typeList.add(jTypeTextField.getText());
+            
+            for(int x = 0; x < typeList.size(); x++)
+            {
+                output = output + "[" + typeList.get(x) + "], ";
+            }
+            jType1Area.setText(output);
+        }
+    }//GEN-LAST:event_jAddButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,9 +252,11 @@ public class GUI extends javax.swing.JFrame
             }
         });
     }
+    private ArrayList<String> typeList = new ArrayList<>();
     private int bananEat;
     private int bananCnt;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jAddButton;
     private javax.swing.JTextField jBnCnt;
     private javax.swing.JButton jBnCntDown;
     private javax.swing.JButton jBnCntUp;
@@ -215,5 +264,8 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JButton jBnEatDown;
     private javax.swing.JButton jBnEatUp;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jType1Area;
+    private javax.swing.JTextField jTypeTextField;
     // End of variables declaration//GEN-END:variables
 }
